@@ -8,20 +8,7 @@ const createaccount_createaccount_get = (req, res) => {
     SAcademicY: "",
   });
 };
-const createaccountSelect_createaccount_get = (req, res) => {
-  res.render("login", {
-    title: "create account",
-    alreadyUserName: "",
-    SAcademicY: "is-invalid",
-  });
-};
-const createaccountEmail_createaccount_get = (req, res) => {
-  res.render("login", {
-    title: "create account",
-    alreadyUserName: "is-invalid",
-    SAcademicY: "",
-  });
-};
+
 const createaccount_post = (req, res) => {
   const newAccount = new Accounts(req.body);
 
@@ -32,33 +19,40 @@ const createaccount_post = (req, res) => {
   }
   newAccount.ban = "0";
 
-
-  if (req.body.academicYear == "0") {
-    res.redirect('/createaccount/select/notSelect/')
-  }
-
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {
-      if (result == null) {
-        bcrypt
-          .hash(newAccount.password, 10)
-          .then((hashed) => {
-            newAccount.password = `${hashed}`;
-            console.log(hashed);
-            newAccount
-              .save()
-              .then((result) => {
-                res.redirect(`/`);
-              })
-              .catch((err) => {
-                console, log(err);
-              });
-          })
-          .catch((err) => {
-            console.log(err);
+      if (newAccount.academicYear != "0") {
+        if (result == null) {
+          bcrypt
+            .hash(newAccount.password, 10)
+            .then((hashed) => {
+              newAccount.password = `${hashed}`;
+              console.log(hashed);
+              newAccount
+                .save()
+                .then((result) => {
+                  res.redirect(`/`);
+                })
+                .catch((err) => {
+                  console, log(err);
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          res.render("login", {
+            title: "create account",
+            alreadyUserName: "is-invalid",
+            SAcademicY: "",
           });
+        }
       } else {
-        res.redirect(`/createaccount/select/notSelect/`);
+        res.render("login", {
+          title: "create account",
+          alreadyUserName: "",
+          SAcademicY: "",
+        });
       }
     })
     .catch((err) => {
@@ -68,7 +62,5 @@ const createaccount_post = (req, res) => {
 
 module.exports = {
   createaccount_createaccount_get,
-  createaccountSelect_createaccount_get,
-  createaccountEmail_createaccount_get,
   createaccount_post,
 };
