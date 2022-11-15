@@ -29,6 +29,7 @@
                   <td class="text-center">user name</td>
                   <td class="text-center">academic Year</td>
                   <td class="text-center">admin/user</td>
+                  <td class="text-center">IP</td>
                   <td class="text-center">ban</td>
                   <td class="text-center">make admin</td>
                 </tr>
@@ -56,6 +57,8 @@
                           admin
                           <% } %>
                     </td>
+                  <td class="text-center"><%= AccountsData[i].IP %></td>
+
 
                     <td class="text-center">
                       <% if (AccountsData[i].admin=='0' ) { %>

@@ -1,6 +1,7 @@
 const Accounts = require("../models/accountsSchema.js");
 const ban = require("../models/banSchema");
 const IP = require("ip");
+const { findByIdAndDelete } = require("../models/accountsSchema.js");
 
 const dashboard_dashboard_post = (req, res) => {
   Accounts.find()
@@ -18,14 +19,36 @@ const dashboard_dashboard_post = (req, res) => {
 };
 
 const ban_dashboard_post = (req, res) => {
-  const newban = new ban(IP.address());
+  const newban = new ban();
 
   Accounts.findById(req.body.id)
     .then((result) => {
       if (result.ban == "0") {
         Accounts.findByIdAndUpdate(req.body.id, { ban: "1" }).then((result) => {
-          newban.save()
-          .then((req, res) => {
+          newban.IP = result.IP;
+          newban
+            .save()
+            .then(() => {
+              Accounts.find()
+                .then((result) => {
+                  res.render("dashbord", {
+                    title: "dash board",
+                    userData: req.body.userData,
+                    AccountsData: result,
+                    alert: 1,
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      } else {
+        Accounts.findByIdAndUpdate(req.body.id, { ban: "0" }).then((result) => {
+          findByIdAndDelete(req.body.id).then(() => {
             Accounts.find()
               .then((result) => {
                 res.render("dashbord", {
@@ -38,24 +61,7 @@ const ban_dashboard_post = (req, res) => {
               .catch((err) => {
                 console.log(err);
               });
-          }).catch((err) => {
-            console.log(err)
-          })
-        });
-      } else {
-        Accounts.findByIdAndUpdate(req.body.id, { ban: "0" }).then((result) => {
-          Accounts.find()
-            .then((result) => {
-              res.render("dashbord", {
-                title: "dash board",
-                userData: req.body.userData,
-                AccountsData: result,
-                alert: 1,
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          });
         });
       }
     })
