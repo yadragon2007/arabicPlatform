@@ -8,6 +8,13 @@
 
 <body class="bg-dark text-light text-capitalize">
     <div class="loginP w-100">
+
+
+      <% if (ban==1) { %>
+        <div class="alert alert-warning rounded-0 d-flex align-items-center" role="alert">
+          <h4>this account is baned</h4>
+        </div>
+        <% } %>
       <%- include('./partials/nav.ejs') %> 
 
 
@@ -17,17 +24,17 @@
         <div class="mt-5 mb-5 row justify-content-around ">
             <div class="col-lg-4 col-11 mb-5 mb-lg-0">
                 <h1 style="font-size: 35px;">login</h1>
-                <form action="" class="">
+                <form action="/" method="post" class="">
                     <div class="form-group">
-                        <label for="email" class="text-secondary ">email</label>
-                        <input type="email" class="form-control" name="email" id="email" required>
+                        <label for="userName" class="text-secondary ">email</label>
+                        <input type="text" class="form-control <%= FUserN %> " name="userName" id="userName" required>
                         <div class="invalid-feedback">
                             user name is false
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="text-secondary">password</label>
-                        <input type="password" class="form-control  " name="password" id="password"
+                        <input type="password" class="form-control <%= FPassword %> " name="password" id="password"
                             required>
                         <div class="invalid-feedback">
                             password is false.
@@ -50,8 +57,8 @@
                     <div class="row">
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label for="frestName" class="text-secondary">frest Name</label>
-                                <input type="text" class="form-control w-100" name="frestName" id="frestName" required>
+                                <label for="firstName" class="text-secondary">frest Name</label>
+                                <input type="text" class="form-control w-100" name="firstName" id="firstName" required>
 
                             </div>
                         </div>
@@ -65,7 +72,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="userName" class="text-secondary">user name</label>
-                                <input type="text" class="form-control <%= alreadyUserName %> " name="userName" id="userName" required>
+                                <input type="text" class="form-control <%= alreadyUserName %>" name="userName" id="userName" required>
                                 <div class="invalid-feedback">this e-mail is already used</div>
                             </div>
                         </div>
@@ -77,11 +84,11 @@
                             </div>
                         </div>
                         <div class="col-7 mt-1 mb-3">
-                            <select class="custom-select <%= SAcademicY %> " name="academicYear" aria-label="Default select example">
+                            <select class="custom-select <%= SAcademicY %>" name="academicYear" aria-label="Default select example">
                                 <option selected value="0">Select your academic year</option>
-                                <option name="fs" value="fs">first secondary</option>
-                                <option name="ss" value="ss">Second secondary</option>
-                                <option name="ts" value="ts">Third secondary</option>
+                                <option name="fs" value="first secondary">first secondary</option>
+                                <option name="ss" value="Second secondary">Second secondary</option>
+                                <option name="ts" value="Third secondary">Third secondary</option>
                             </select>
                             <div class="invalid-feedback">chose academic year</div>
                         </div>

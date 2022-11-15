@@ -5,11 +5,9 @@ const url = require('url')
 const loginController = require('../controllers/loginControllre');
 
 
-router.get('/', loginController.login_get)
-router.get('/login/false/userName', loginController.userName_login_get)
-router.get('/login/false/password', loginController.password_login_get)
-router.get('/login', loginController.login_index_get)
-router.post('/home', loginController.homePage_post)
+router.get('/login/:uerName/:password/', loginController.login_index_get)
+router.get('/login/ban/', loginController.ban_login_get)
+router.post('/', loginController.homePage_post)
 
 
 

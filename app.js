@@ -6,6 +6,7 @@ let port = 8080;
 const Home = require('./routes/home')
 const login = require('./routes/login')
 const createAcc = require('./routes/creatAcc')
+const dashbord = require('./routes/dashbord')
 
 
 
@@ -34,7 +35,6 @@ liveReloadServer.server.once("connection", () => {
 //---------------------------------------------------------------------------------------------------------------------------//
 // connect to data base
 const mongoose = require('mongoose');
-const { create } = require('./models/accountsSchema');
 mongoose.connect("mongodb+srv://arabicPlatform:GcRkD1QI1JE71BNM@cluster0.3bdx6kn.mongodb.net/platformData?retryWrites=true&w=majority")
   .then((result) => {
     app.listen(process.env.PORT || port, () => {
@@ -51,7 +51,11 @@ app.use(helmet());
 //home page
 app.use(Home)
 //login
+app.use(login)
+//create acc
 app.use(createAcc)
+
+app.use(dashbord)
 
 
 

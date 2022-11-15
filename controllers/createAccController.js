@@ -4,15 +4,18 @@ const bcrypt = require("bcrypt");
 const createaccount_createaccount_get = (req, res) => {
   res.render("login", {
     title: "create account",
-    alreadyUserName: "",
-    SAcademicY: "",
+    alreadyUserName: req.params.user,
+    SAcademicY: req.params.select,
+    FUserN:'',
+    FPassword:'',
+    ban:0,
   });
 };
 
 const createaccount_post = (req, res) => {
   const newAccount = new Accounts(req.body);
 
-  if (req.body.userName == "Amr") {
+  if (req.body.userName == "fluentArabic") {
     newAccount.admin = "1";
   } else {
     newAccount.admin = "0";
@@ -21,13 +24,12 @@ const createaccount_post = (req, res) => {
 
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {
-      if (newAccount.academicYear != "0") {
+      if (req.body.userName == 'fluentArabic' || newAccount.academicYear != "0" ) {
         if (result == null) {
           bcrypt
             .hash(newAccount.password, 10)
             .then((hashed) => {
               newAccount.password = `${hashed}`;
-              console.log(hashed);
               newAccount
                 .save()
                 .then((result) => {
@@ -41,18 +43,10 @@ const createaccount_post = (req, res) => {
               console.log(err);
             });
         } else {
-          res.render("login", {
-            title: "create account",
-            alreadyUserName: "is-invalid",
-            SAcademicY: "",
-          });
+          res.redirect('/createaccount/is-invalid/ ')
         }
       } else {
-        res.render("login", {
-          title: "create account",
-          alreadyUserName: "",
-          SAcademicY: "",
-        });
+        res.redirect('/createaccount/ /is-invalid')
       }
     })
     .catch((err) => {
