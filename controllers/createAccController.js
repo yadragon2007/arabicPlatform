@@ -1,5 +1,7 @@
 const Accounts = require("../models/accountsSchema.js");
 const bcrypt = require("bcrypt");
+const IP = require('ip');
+
 
 const createaccount_createaccount_get = (req, res) => {
   res.render("login", {
@@ -21,6 +23,8 @@ const createaccount_post = (req, res) => {
     newAccount.admin = "0";
   }
   newAccount.ban = "0";
+  
+  newAccount.IP = IP.address();
 
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {

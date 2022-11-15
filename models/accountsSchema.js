@@ -10,6 +10,7 @@ const accountsSchema = new Schema({
   academicYear: String,
   admin: String,
   ban: String,
+  IP:String,
 });
 
 const Accounts = mongoose.model("Accounts", accountsSchema);
