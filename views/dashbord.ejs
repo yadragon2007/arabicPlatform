@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+
+  </head>
+
+  <body class="bg-dark text-light text-capitalize">
+    <% if (alert==1) { %>
+      <div class="alert alert-warning rounded-0 d-flex align-items-center" role="alert">
+        <form action="/dashboard/" class="" method="post">
+          <input type="hidden" name="userData" value="<%= userData %>">
+          <input type="submit" class="btn btn-warning pl-3 pr-3" value="done">
+        </form>
+      </div>
+      <% } %>
+
+        <%- include('./partials/nav.ejs') %>
+
+
+          <div class="container mt-5 mb-5" style="max-height: 500px; overflow-y: scroll;">
+            <h2>users</h2>
+            <table class="w-100">
+              <thead>
+                <tr>
+                  <td class="text-center">id</td>
+                  <td class="text-center">name</td>
+                  <td class="text-center">user name</td>
+                  <td class="text-center">academic Year</td>
+                  <td class="text-center">admin/user</td>
+                  <td class="text-center">ban</td>
+                  <td class="text-center">make admin</td>
+                </tr>
+              </thead>
+              <tbody class="" style="gap: 5px;">
+                <% for( let i=0; i < AccountsData.length; i++ ) { %>
+                  <tr class="">
+                    <td class="text-center">
+                      <%= i %>
+                    </td>
+                    <td class="text-center">
+                      <%= AccountsData[i].firstName %>
+                        <%= AccountsData[i].lastName %>
+                    </td>
+                    <td class="text-center">
+                      <%= AccountsData[i].userName %>
+                    </td>
+                    <td class="text-center">
+                      <%= AccountsData[i].academicYear %>
+                    </td>
+                    <td class="text-center">
+                      <% if (AccountsData[i].admin=='0' ) { %>
+                        user
+                        <% }else{ %>
+                          admin
+                          <% } %>
+                    </td>
+
+                    <td class="text-center">
+                      <% if (AccountsData[i].admin=='0' ) { %>
+                        <% if (AccountsData[i].ban=='0' ) { %>
+                          <form action="/ban/" method="post">
+                            <input type="hidden" name="id" value="<%= AccountsData[i].id %>">
+                            <input type="hidden" name="AccountsData" value="<%= AccountsData %>">
+                            <input type="hidden" name="userData" value="<%= userData %>">
+                            <input type="submit" class="btn btn-primary pl-3 pr-3 mb-3" value="ban">
+                          </form>
+
+
+                          <% }else{ %>
+                            <form action="/ban/" method="post">
+                              <input type="hidden" name="id" value="<%= AccountsData[i].id %>">
+                              <input type="hidden" name="AccountsData" value="<%= AccountsData %>">
+                              <input type="hidden" name="userData" value="<%= userData %>">
+                              <input type="submit" class="btn btn-danger pl-3 pr-3 mb-3" value="baned">
+                            </form>
+                            <% } %>
+                              <% }else{ %>
+                                -----
+                                <% } %>
+
+                    </td>
+                    <% if (AccountsData[i].admin=='0' ) { %>
+                      <td class="text-center">
+                        <form action="/admin/" method="post">
+                          <input type="hidden" name="id" value="<%= AccountsData[i].id %>">
+                          <input type="hidden" name="AccountsData" value="<%= AccountsData %>">
+                          <input type="hidden" name="userData" value="<%= userData %>">
+                          <input type="submit" class="btn btn-primary pl-3 pr-3 mb-3" value="make it admin">
+                        </form>
+                      </td>
+                      <% }else{ %>
+                        <% if (AccountsData[i].userName=='fluentArabic' ) { %>
+                          <td class="text-center">-----</td>
+                          <% }else{ %>
+                            <td class="text-center">
+                              <form action="/admin/" method="post">
+                                <input type="hidden" name="id" value="<%= AccountsData[i].id %>">
+                                <input type="hidden" name="AccountsData" value="<%= AccountsData %>">
+                                <input type="hidden" name="userData" value="<%= userData %>">
+                                <input type="submit" class="btn btn-primary pl-3 pr-3 mb-3" value="make it user">
+                              </form>
+                            </td>
+                            <% } %>
+                              <% } %>
+                  </tr>
+                  <% } %>
+
+              </tbody>
+            </table>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- <div class="mb-5">
+                  <div class="container">
+                    <h1>add video</h1>
+                    <form action="" class="w-50">
+                      <div class="form-group">
+                        <label for="Vlink" class="text-secondary ">video link</label>
+                        <input type="text" class="form-control" name="Vlink" id="Vlink" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="Flink" class="text-secondary">file link</label>
+                        <input type="text" class="form-control" name="Flink" id="Flink" required>
+                      </div>
+
+                      <input type="submit" class="btn btn-primary mt-3" value="Add Video">
+
+                    </form>
+                  </div>
+                </div> -->
+
+
+
+
+
+          <%- include('./partials/footer.ejs') %>
+
+
+
+            <%- include('./partials/js.ejs') %>
+
+  </body>
+
+</html>
