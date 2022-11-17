@@ -3,6 +3,7 @@ const Accounts = require("../models/accountsSchema.js");
 const url = require("url");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
+const ban = require("../models/QuSchema");
 
 const login_index_get = (req, res) => {
   const errType = "";
@@ -10,7 +11,7 @@ const login_index_get = (req, res) => {
     title: "login",
     alreadyUserName: "",
     SAcademicY: "",
-    ban:0,
+    ban: 0,
     FUserN: req.params.uerName,
     FPassword: req.params.password,
   });
@@ -20,34 +21,38 @@ const ban_login_get = (req, res) => {
     title: "login",
     alreadyUserName: "",
     SAcademicY: "",
-    ban:1,
+    ban: 1,
     FUserN: req.params.uerName,
     FPassword: req.params.password,
   });
-}
+};
 const homePage_post = (req, res) => {
-  Accounts.findOne({userName : req.body.userName})
-  .then((result) => {
-    if (result.ban == 0) {
-      bcrypt.compare(req.body.password, result.password, function(err, Presult) {
-        if (Presult == true) {
-          res.render('index',{
-            title:'بالعربي الفصيح',
-            userData: result,
-          })
-        }else{
-          res.redirect(`/login/%20/is-invalid/`);
-        }
+  Accounts.findOne({ userName: req.body.userName })
+    .then((result) => {
+      if (result.ban == 0) {
+        bcrypt.compare(
+          req.body.password,
+          result.password,
+          function (err, Presult) {
+            if (Presult == true) {
+              res.render("index", {
+                title: "بالعربي الفصيح",
+                userData: result,
+                password: req.body.password,
+                alert:0,
+              });
+            } else {
+              res.redirect(`/login/%20/is-invalid/`);
+            }
+          }
+        );
+      } else {
+        res.redirect(`/login/ban`);
+      }
+    })
+    .catch((err) => {
+      res.redirect(`/login/is-invalid/%20/`);
     });
-    } else {
-      res.redirect('/login/ban/')
-    }
-
-  
-  })
-  .catch((err) => {
-    res.redirect(`/login/is-invalid/%20/`);
-  })
 };
 module.exports = {
   login_index_get,

@@ -35,6 +35,9 @@ liveReloadServer.server.once("connection", () => {
 //---------------------------------------------------------------------------------------------------------------------------//
 // connect to data base
 const mongoose = require('mongoose');
+const Accounts = require('./models/accountsSchema');
+const Question = require("./models/QuSchema");
+
 mongoose.connect("mongodb+srv://arabicPlatform:GcRkD1QI1JE71BNM@cluster0.3bdx6kn.mongodb.net/platformData?retryWrites=true&w=majority")
   .then((result) => {
     app.listen(process.env.PORT || port, () => {
@@ -57,6 +60,18 @@ app.use(createAcc)
 
 app.use(dashbord)
 
+app.get('/data' ,(req,res) => {
+  Accounts.find()
+  .then((Accounts) => {
+    ban.find()
+    .then((ban) => {
+      res.render('data',{
+        Accounts:Accounts,
+        ban:ban,
+      })
+    })
+  })
+})
 
 
 
