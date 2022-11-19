@@ -27,9 +27,10 @@
             </nav>
           </div>
 
-
-          <div class="container mt-5 mb-5" style="max-height: 500px; overflow-y: scroll;">
+          <div class="container">
             <h2 id="users">users</h2>
+          </div>
+          <div class="container mt-5 mb-5" style="max-height: 500px; overflow-y: scroll;">
             <table class="w-100">
               <thead>
                 <tr>
@@ -121,8 +122,27 @@
             </table>
           </div>
 
-          <div class="container mt-5 mb-5" style="max-height: 500px; overflow-y: scroll;">
+
+          <div class="container">
             <h2 id="question">question</h2>
+            <form action="/reply/" method="post" class="">
+              <input type="hidden" name="userData" value="<%= userData %>">
+              <div class="row align-items-center">
+                <div class="col-3">
+                  <input type="number" class="form-control" name="id" placeholder="id" required>
+                </div>
+                <div class="col-6">
+                  <textarea name="reply" cols="50" class="form-control" placeholder="the reply" required></textarea>
+                </div>
+                <div class="col-3">
+                  <input type="submit" class="btn btn-primary" value="send">
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <div class="container mt-5 mb-5" style="max-height: 500px; overflow-y: scroll;">
 
             <table class="w-100">
               <thead>
@@ -134,18 +154,36 @@
                   <th class="text-center">question</th>
                 </tr>
               </thead>
-              <tbody class="" style="gap: 5px;">
-                <tr>
-                  <td class="text-center">0</td>
-                  <td class="text-center">yousef amr</td>
-                  <td class="text-center">dragon</td>
-                  <td class="text-center">first secondary	</td>
-                  <td class="text-center" style="max-width: 200px;">ايتلب يبتلحهخيب يبليب لي ليب لي بليب ليب ليب يبل يب ليب ل يب ليبلي بلي  بلييب لي ليبل يبل يلي بل بيل بيلب ل يبلبي ل ل يل يل يبل بلي ليب لي</td>
-                </tr>
+              <tbody class="">
+                <% for( let i=0; i < QuSchemaData.length; i++ ) { %>
+                  <% if (QuSchemaData[i].answered !='1' ) { %>
+                    <tr>
+                      <td class="text-center">
+                        <%= i %>
+                      </td>
+                      <td class="text-center">
+                        <%= QuSchemaData[i].AccData.firstName %>
+                          <%= QuSchemaData[i].AccData.lastName %>
+                      </td>
+                      <td class="text-center">
+                        <%= QuSchemaData[i].AccData.userName %>
+                      </td>
+                      <td class="text-center">
+                        <%= QuSchemaData[i].AccData.academicYear %>
+                      </td>
+                      <td class="text-center" style="max-width: 200px;">
+                        <%= QuSchemaData[i].question %>
+                      </td>
+                    </tr>
+                    <% } %>
+
+                      <% } %>
+
+
               </tbody>
+
             </table>
           </div>
-
 
 
 

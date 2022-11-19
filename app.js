@@ -7,6 +7,7 @@ const Home = require('./routes/home')
 const login = require('./routes/login')
 const createAcc = require('./routes/creatAcc')
 const dashbord = require('./routes/dashbord')
+const profile = require('./routes/profile')
 
 
 
@@ -57,24 +58,10 @@ app.use(Home)
 app.use(login)
 //create acc
 app.use(createAcc)
-
+//dashbord
 app.use(dashbord)
-
-app.get('/data' ,(req,res) => {
-  Accounts.find()
-  .then((Accounts) => {
-    ban.find()
-    .then((ban) => {
-      res.render('data',{
-        Accounts:Accounts,
-        ban:ban,
-      })
-    })
-  })
-})
-
-
-
+//profile
+app.use(profile)
 //404
 app.use((req, res) => {
   res.status(404).render('404',{title: 'not found'})

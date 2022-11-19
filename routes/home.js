@@ -5,7 +5,7 @@ const homeController = require('../controllers/homeController');
 
 
 router.get("/", (req, res) => {
-  res.render("index", {title: "home", userData:''});
+  res.render("index", {title: "home", userData:'' ,alert:'0'});
 });
 
 router.post("/send/question/", homeController.sendQu_index_post)

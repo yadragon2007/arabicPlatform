@@ -1,341 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('./partials/head.ejs') %> 
+<%- include('./partials/head.ejs') %>
 
 
-</head>
+  </head>
 
-<body class="bg-dark text-light text-capitalize">
+  <body class="bg-dark text-light text-capitalize">
     <div class="profile">
-      
 
-      <%- include('./partials/nav.ejs') %> 
+
+      <%- include('./partials/nav.ejs') %>
 
 
 
         <div class="mb-5 mt-5">
-            <div class="row justify-content-md-around justify-content-center  mb-4 mt-4 align-items-center">
-                <div class="col-7 col-lg-4 col-xl-3">
-                    <img src="img/500x500.png" class="rounded-circle w-100" alt="">
-                </div>
-                <div class="col-12 col-md-5 m-5">
-                    <div class="row justify-content-center justify-content-md-start">
-                        <h1>yousef amr</h1>
-                    </div>
-                    <div class="row justify-content-center justify-content-md-start flex-column">
-                        <span class="badge text-light bg-primary" style="max-width: 125px;">first secondary</span>
+          <div class="row justify-content-md-around justify-content-center  mb-4 mt-4 align-items-center">
+            <div class="col-7 col-lg-4 col-xl-3">
+              <img src="/img/500x500.png" class="rounded-circle w-100" alt="">
+            </div>
+            <div class="col-12 col-md-5 m-5">
 
-                        <p class="text-secondary">#0000</p>
 
+              <div class="row justify-content-center justify-content-md-start">
+                <h1>
+                  <%= userData.firstName %>
+                    <%= userData.lastName %>
+                </h1>
+              </div>
+              <div class="row justify-content-center justify-content-md-start flex-column">
+                <span class="badge text-light bg-primary" style="max-width: 125px;">
+                  <%= userData.academicYear %>
+                </span>
+
+                <p class="text-secondary">#<%= userData.id %>
+                </p>
+
+              </div>
+              <!-- <div class="row justify-content-center justify-content-md-start">
+                <p class="profileDescription">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quidem excepturi odit. Eum
+                  veritatis
+                  odit molestiae sint fugiat sequi incidunt natus ad. Quas perferendis, sunt eaque nisi
+                  sapiente
+                  nam, laboriosam voluptatum dolorem, totam hic odio laborum quos minima quo reiciendis sint
+                  sequi
+                  quis vitae vel optio consectetur. Impedit, corporis voluptate!
+                </p>
+              </div>
+              <div class="row justify-content-center justify-content-md-start">
+                <button class="btn btn-primary">Edit Profile</button>
+              </div> -->
+            </div>
+          </div>
+
+
+          <div class="container mt-5 mb-5">
+            <div class="row ppp justify-content-center">
+
+              <div class=" w-75 mt-5 mb-5">
+                <div class="card card-body bg-dark">
+
+                  <h2>Student evaluation:</h2>
+
+                  <div class="progress w-75">
+                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
+                      25%
                     </div>
-                    <div class="row justify-content-center justify-content-md-start">
-                        <p class="profileDescription">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quidem excepturi odit. Eum
-                            veritatis
-                            odit molestiae sint fugiat sequi incidunt natus ad. Quas perferendis, sunt eaque nisi
-                            sapiente
-                            nam, laboriosam voluptatum dolorem, totam hic odio laborum quos minima quo reiciendis sint
-                            sequi
-                            quis vitae vel optio consectetur. Impedit, corporis voluptate!
-                        </p>
-                    </div>
-                    <div class="row justify-content-center justify-content-md-start">
-                        <button class="btn btn-primary">Edit Profile</button>
-                    </div>
+                  </div>
+                  <br>
+                  <h2>exam grades:</h2>
+                  <p>exam 1: 50/34</p>
+                  <p>exam 2: 50/40</p>
+                  <p>exam 3: 50/45</p>
+                  <p>exam 4: 50/50</p>
+                  <br>
+
+                  <h2 class="">smg:</h2>
+                  <% for( let i=0; i < QuSchemaData.length; i++ ) { %>
+                    <% if (QuSchemaData[i].AccData.userName==userData.userName) { %>
+                      <% if (QuSchemaData[i].answered=='1' ) { %>
+                        <div class="card card-body bg-dark">
+                          <p>the answer of this question: <i class="text-secondary">
+                              <%= QuSchemaData[i].question %>
+                            </i></p>
+                          <p>
+                            <%= QuSchemaData[i].reply %>
+                          </p>
+                          <form action="" method="post">
+                            <input type="submit" class="btn btn-primary mt-3" value="delete">
+                          </form>
+                        </div>
+                        
+                        <% } %>
+
+                          <% } %>
+                            <% } %>
+
+
+                              <a href="" class="btn btn-primary mt-5">continue learning</a>
                 </div>
+
+              </div>
             </div>
 
-
-            <div class="container mt-5 mb-5">
-                <div class="row ppp">
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapseharabic" data-toggle="collapse">arabic</p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapseharabic">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehEnglish" data-toggle="collapse">English
-                            </p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehEnglish">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehMath" data-toggle="collapse">Math</p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehMath">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehgeography" data-toggle="collapse">
-                                geography</p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehgeography">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehhistory" data-toggle="collapse">history
-                            </p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehhistory">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehchemistry" data-toggle="collapse">
-                                chemistry</p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehchemistry">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehphysics" data-toggle="collapse">physics
-                            </p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehphysics">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="w-100 d-flex flex-column justify-content-center justify-content-md-around align-items-center">
-                        <div class="w-100 d-flex justify-content-center justify-content-md-around align-items-center">
-                            <p class="m-auto collapsed" data-target="#collapsehbiology" data-toggle="collapse">biology
-                            </p>
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">25%
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="collapse w-75 mt-5 mb-5" id="collapsehbiology">
-                            <div class="card card-body bg-dark">
-
-                                <h2>Student evaluation:</h2>
-
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                                        25%
-                                    </div>
-                                </div>
-                                <br>
-                                <h2>exam grades:</h2>
-                                <p>exam 1: 50/34</p>
-                                <p>exam 2: 50/40</p>
-                                <p>exam 3: 50/45</p>
-                                <p>exam 4: 50/50</p>
-                                <br>
-                                <a href="" class="btn btn-primary mt-5">continue learning</a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
-            </div>
+          </div>
         </div>
 
 
 
 
 
-        <%- include('./partials/footer.ejs') %> 
+        <%- include('./partials/footer.ejs') %>
 
     </div>
 
-    <%- include('./partials/js.ejs') %> 
+    <%- include('./partials/js.ejs') %>
 
-</body>
+  </body>
 
 </html>
