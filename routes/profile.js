@@ -6,6 +6,7 @@ const profileController = require('../controllers/profileController');
 
 
 router.post('/profile/', profileController.profile_peofile_post)
+router.get('/delete/question/:quId/:userId', profileController.deleteQu_peofile_get)
 
 
 
