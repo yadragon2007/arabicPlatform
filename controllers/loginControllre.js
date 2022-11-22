@@ -3,7 +3,11 @@ const Accounts = require("../models/accountsSchema.js");
 const url = require("url");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
-const ban = require("../models/QuSchema");
+const cookieParser = require("cookie-parser");
+
+
+
+
 
 const login_index_get = (req, res) => {
   const errType = "";
@@ -16,6 +20,9 @@ const login_index_get = (req, res) => {
     FPassword: req.params.password,
   });
 };
+
+
+
 const ban_login_get = (req, res) => {
   res.render("login", {
     title: "login",
@@ -26,6 +33,9 @@ const ban_login_get = (req, res) => {
     FPassword: req.params.password,
   });
 };
+
+
+
 const homePage_post = (req, res) => {
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {
@@ -35,12 +45,13 @@ const homePage_post = (req, res) => {
           result.password,
           function (err, Presult) {
             if (Presult == true) {
-              res.render("index", {
-                title: "بالعربي الفصيح",
-                userData: result,
-                password: req.body.password,
-                alert:0,
-              });
+
+              let userData = result
+              let password = req.body.password
+
+              res.cookie('userData',userData)
+              res.redirect('/')
+
             } else {
               res.redirect(`/login/%20/is-invalid/`);
             }

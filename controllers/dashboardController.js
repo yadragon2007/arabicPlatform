@@ -3,14 +3,14 @@ const QuSchema = require("../models/QuSchema");
 const IP = require("ip");
 const { findByIdAndDelete } = require("../models/accountsSchema.js");
 
-const dashboard_dashboard_post = (req, res) => {
+const dashboard_dashboard_get = (req, res) => {
   Accounts.find()
     .then((AccountsResult) => {
       QuSchema.find()
         .then((QuSchemaResult) => {
           res.render("dashbord", {
             title: "dash board",
-            userData: req.body.userData,
+            userData: req.cookies.userData,
             AccountsData: AccountsResult,
             QuSchemaData: QuSchemaResult,
             alert: 0,
@@ -26,45 +26,16 @@ const dashboard_dashboard_post = (req, res) => {
 };
 
 const ban_dashboard_post = (req, res) => {
-  const newban = new ban();
 
   Accounts.findById(req.body.id)
     .then((result) => {
       if (result.ban == "0") {
         Accounts.findByIdAndUpdate(req.body.id, { ban: "1" }).then((result) => {
-          Accounts.find()
-            .then((AccountsResult) => {
-              QuSchema.find().then((QuSchemaResult) => {
-                res.render("dashbord", {
-                  title: "dash board",
-                  userData: req.body.userData,
-                  AccountsData: AccountsResult,
-                  QuSchemaData: QuSchemaResult,
-                  alert: 1,
-                });
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          res.redirect("/dashboard/");
         });
       } else {
         Accounts.findByIdAndUpdate(req.body.id, { ban: "0" }).then((result) => {
-          Accounts.find()
-            .then((AccountsResult) => {
-              QuSchema.find().then((QuSchemaResult) => {
-                res.render("dashbord", {
-                  title: "dash board",
-                  userData: req.body.userData,
-                  AccountsData: AccountsResult,
-                  QuSchemaData: QuSchemaResult,
-                  alert: 1,
-                });
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          res.redirect("/dashboard/");
         });
       }
     })
@@ -78,41 +49,13 @@ const admin_dashboard_post = (req, res) => {
       if (result.admin == "0") {
         Accounts.findByIdAndUpdate(req.body.id, { admin: "1" }).then(
           (result) => {
-            Accounts.find()
-              .then((AccountsResult) => {
-                QuSchema.find().then((QuSchemaResult) => {
-                  res.render("dashbord", {
-                    title: "dash board",
-                    userData: req.body.userData,
-                    AccountsData: AccountsResult,
-                    QuSchemaData: QuSchemaResult,
-                    alert: 1,
-                  });
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+            res.redirect("/dashboard/");
           }
         );
       } else {
         Accounts.findByIdAndUpdate(req.body.id, { admin: "0" }).then(
           (result) => {
-            Accounts.find()
-              .then((AccountsResult) => {
-                QuSchema.find().then((QuSchemaResult) => {
-                  res.render("dashbord", {
-                    title: "dash board",
-                    userData: req.body.userData,
-                    AccountsData: AccountsResult,
-                    QuSchemaData: QuSchemaResult,
-                    alert: 1,
-                  });
-                });
-              })
-              .catch((err) => {
-                console.log(err);
-              });
+            res.redirect("/dashboard/");
           }
         );
       }
@@ -127,24 +70,16 @@ const reply_dashboard_post = (req, res) => {
   QuSchema.find().then((QuSchemaResult) => {
     QuSchema.findByIdAndUpdate(
       QuSchemaResult[data.id].id,
-      { reply: data.reply ,answered:'1'},
+      { reply: data.reply, answered: "1" },
       (err, result) => {
-          Accounts.find().then((AccountsResult) => {
-            res.render("dashbord", {
-              title: "dash board",
-              userData: req.body.userData,
-              AccountsData: AccountsResult,
-              QuSchemaData: QuSchemaResult,
-              alert: 1,
-            });
-          });
+        res.redirect("/dashboard/");
       }
     );
   });
 };
 
 module.exports = {
-  dashboard_dashboard_post,
+  dashboard_dashboard_get,
   ban_dashboard_post,
   admin_dashboard_post,
   reply_dashboard_post,

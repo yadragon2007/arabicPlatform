@@ -1,6 +1,8 @@
 const experss = require('express')
 const app = experss();
 const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+
 let port = 8080;
 // require
 const Home = require('./routes/home')
@@ -51,6 +53,8 @@ mongoose.connect("mongodb+srv://arabicPlatform:GcRkD1QI1JE71BNM@cluster0.3bdx6kn
 //-------------------------------------------------------------------------------------------------------------------------//
 //helmet
 app.use(helmet());
+//cookie
+app.use(cookieParser());
 //-------------------------------------------------------------------------------------------------------------------------//
 //home page
 app.use(Home)

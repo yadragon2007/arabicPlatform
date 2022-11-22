@@ -1,16 +1,15 @@
 const Accounts = require("../models/accountsSchema.js");
 const bcrypt = require("bcrypt");
-const IP = require('ip');
-
+const IP = require("ip");
 
 const createaccount_createaccount_get = (req, res) => {
   res.render("login", {
     title: "create account",
     alreadyUserName: req.params.user,
     SAcademicY: req.params.select,
-    FUserN:'',
-    FPassword:'',
-    ban:0,
+    FUserN: "",
+    FPassword: "",
+    ban: 0,
   });
 };
 
@@ -23,12 +22,15 @@ const createaccount_post = (req, res) => {
     newAccount.admin = "0";
   }
   newAccount.ban = "0";
-  
+
   newAccount.IP = IP.address();
 
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {
-      if (req.body.userName == 'fluentArabic' || newAccount.academicYear != "0" ) {
+      if (
+        req.body.userName == "fluentArabic" ||
+        newAccount.academicYear != "0"
+      ) {
         if (result == null) {
           bcrypt
             .hash(newAccount.password, 10)
@@ -37,7 +39,13 @@ const createaccount_post = (req, res) => {
               newAccount
                 .save()
                 .then((result) => {
-                  res.redirect(`/`);
+
+                  let userData = result;
+                  let password = req.body.password;
+
+                  res.cookie("userData", userData);
+                  res.redirect("/");
+                  
                 })
                 .catch((err) => {
                   console, log(err);
@@ -47,10 +55,10 @@ const createaccount_post = (req, res) => {
               console.log(err);
             });
         } else {
-          res.redirect('/createaccount/is-invalid/ ')
+          res.redirect("/createaccount/is-invalid/ ");
         }
       } else {
-        res.redirect('/createaccount/ /is-invalid')
+        res.redirect("/createaccount/ /is-invalid");
       }
     })
     .catch((err) => {

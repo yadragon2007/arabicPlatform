@@ -5,8 +5,8 @@ const url = require('url')
 const profileController = require('../controllers/profileController');
 
 
-router.post('/profile/', profileController.profile_peofile_post)
-router.get('/delete/question/:quId/:userId', profileController.deleteQu_peofile_get)
+router.get('/profile/', profileController.profile_peofile_get)
+router.get('/delete/question/:quId/', profileController.deleteQu_peofile_get)
 
 
 

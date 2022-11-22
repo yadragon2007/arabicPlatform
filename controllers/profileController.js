@@ -1,17 +1,15 @@
 const Accounts = require("../models/accountsSchema.js");
 const QuSchema = require("../models/QuSchema");
 
-const profile_peofile_post = (req, res) => {
-    Accounts.findById(req.body.id, (err, AccountResult) => {
+const profile_peofile_get = (req, res) => {
     QuSchema.find().then((QuSchemaResult) => {
       res.render("profile", {
         title: "profile",
-        userData: AccountResult,
+        userData: req.cookies.userData,
         QuSchemaData: QuSchemaResult,
         alert: 0,
       });
     });
-  });
 };
 
 
@@ -19,17 +17,13 @@ const profile_peofile_post = (req, res) => {
 const deleteQu_peofile_get = (req, res) => {
     QuSchema.findByIdAndDelete(req.params.quId,() => {
       
-      res.render("profile", {
-        title: "profile",
-        userData: req.params.userId,
-        QuSchemaData: '',
-        alert: 1,
-      });
+      res.redirect('/profile/')
+      
     })
 }
 
 
 module.exports = {
-  profile_peofile_post,
+  profile_peofile_get,
   deleteQu_peofile_get,
 };
