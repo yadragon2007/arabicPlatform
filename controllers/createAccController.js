@@ -21,6 +21,7 @@ const createaccount_post = (req, res) => {
   } else {
     newAccount.admin = "0";
   }
+  
   newAccount.ban = "0";
 
   newAccount.IP = IP.address();
@@ -28,7 +29,7 @@ const createaccount_post = (req, res) => {
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {
       if (
-        req.body.userName == "fluentArabic" ||
+        req.body.userName == "fluentArabic" &&
         newAccount.academicYear != "0"
       ) {
         if (result == null) {
@@ -43,7 +44,10 @@ const createaccount_post = (req, res) => {
                   let userData = result;
                   let password = req.body.password;
 
-                  res.cookie("userData", userData);
+                  res.cookie("userData", userData,{
+                    secure:true,
+                    maxAge:2592000000,
+                  });
                   res.redirect("/");
                   
                 })

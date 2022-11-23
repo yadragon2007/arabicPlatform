@@ -18,9 +18,9 @@
             <input type="submit" class="btn btn-warning pl-3 pr-3" value="done">
           </div>
         </form>
-        
-          <% } else { %>
-            <%- include('./partials/nav.ejs') %>
+
+        <% } else { %>
+          <%- include('./partials/nav.ejs') %>
 
 
 
@@ -38,29 +38,41 @@
                         <%= userData.lastName %>
                     </h1>
                   </div>
-                  <div class="row justify-content-center justify-content-md-start flex-column">
+                  <div class="row justify-content-center justify-content-lg-start">
                     <span class="badge text-light bg-primary" style="max-width: 125px;">
                       <%= userData.academicYear %>
                     </span>
 
-                    <!-- <p class="text-secondary">#<%= userData.id %>
-                </p> -->
 
                   </div>
-                  <!-- <div class="row justify-content-center justify-content-md-start">
-                <p class="profileDescription">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. A quidem excepturi odit. Eum
-                  veritatis
-                  odit molestiae sint fugiat sequi incidunt natus ad. Quas perferendis, sunt eaque nisi
-                  sapiente
-                  nam, laboriosam voluptatum dolorem, totam hic odio laborum quos minima quo reiciendis sint
-                  sequi
-                  quis vitae vel optio consectetur. Impedit, corporis voluptate!
-                </p>
-              </div>
-              <div class="row justify-content-center justify-content-md-start">
-                <button class="btn btn-primary">Edit Profile</button>
-              </div> -->
+
+                  <div class="row mt-3 justify-content-center justify-content-lg-start ">
+                    <!-- <div class="btn-group"> -->
+                    <!-- <div class="btn btn-primary" style="width: auto;"></div> -->
+
+                      <div class="btn btn-primary dropdown-toggle" id="info" data-toggle="dropdown">options</div>
+
+                    
+                    <!-- </div> -->
+                    <ul class="dropdown-menu" style="width: 200px;">
+                      <a href="" class="dropdown-item disabled">
+                        <!-- <i class="bi bi-sliders"></i> -->
+                        eidt profile
+                      </a>
+                      <a href="" class="dropdown-item disabled">
+                        <!-- <i class="bi bi-gear-fill"></i> -->
+                        setting
+                      </a>
+                      <hr class="dropdown-divider">
+                      <a href="/logout" class="dropdown-item">
+                        <!-- <i class="bi bi-door-closed-fill"></i> -->
+                        log out
+                      </a>
+                    </ul>
+                  </div>
+
+
+
                 </div>
               </div>
 
@@ -97,8 +109,7 @@
                               <p>
                                 <%= QuSchemaData[i].reply %>
                               </p>
-                              <form action="/delete/question/<%= QuSchemaData[i].id %>/"
-                                method="get">
+                              <form action="/delete/question/<%= QuSchemaData[i].id %>/" method="get">
                                 <input type="submit" class="btn btn-primary mt-3" value="delete">
                               </form>
                             </div>

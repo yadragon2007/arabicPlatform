@@ -22,7 +22,8 @@
     "passport-local": "^1.0.0",
     "request": "^2.88.2",
     "socket.io": "^4.5.1",
-    "stock.io": "^0.0.0"
+    "stock.io": "^0.0.0",
+    "ytdl-core": "^4.11.2"
   },
   "scripts": {
     "start": "node app.js",

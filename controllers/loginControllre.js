@@ -49,7 +49,10 @@ const homePage_post = (req, res) => {
               let userData = result
               let password = req.body.password
 
-              res.cookie('userData',userData)
+              res.cookie('userData',userData ,{
+                secure:true,
+                maxAge:2592000000,
+              })
               res.redirect('/')
 
             } else {
@@ -65,8 +68,13 @@ const homePage_post = (req, res) => {
       res.redirect(`/login/is-invalid/%20/`);
     });
 };
+const logout_login_get = (req ,res) => {
+  res.clearCookie('userData')
+  res.redirect('/')
+}
 module.exports = {
   login_index_get,
   homePage_post,
   ban_login_get,
+  logout_login_get,
 };
