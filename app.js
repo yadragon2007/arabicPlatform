@@ -10,6 +10,7 @@ const login = require('./routes/login')
 const createAcc = require('./routes/creatAcc')
 const dashbord = require('./routes/dashbord')
 const profile = require('./routes/profile')
+const learnning_quiz = require('./routes/learnning&quiz')
 
 
 
@@ -66,6 +67,8 @@ app.use(createAcc)
 app.use(dashbord)
 //profile
 app.use(profile)
+//learnning_quiz
+app.use(learnning_quiz)
 //404
 app.use((req, res) => {
   res.status(404).render('404',{title: 'not found'})

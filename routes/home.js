@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser')
 
 
 const homeController = require('../controllers/homeController');
-const Accounts = require("../models/accountsSchema");
 
 
 router.get("/", (req, res) => {

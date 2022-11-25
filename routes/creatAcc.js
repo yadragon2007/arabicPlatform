@@ -1,16 +1,6 @@
 const experss = require('express');
 const router = experss.Router()
-const Accounts = require("../models/accountsSchema.js");
-const url = require('url')
 const ceratAccController = require("../controllers/createAccController");
-
-
-
-
-
-
-
-
 
 
 router.get('/createaccount/:user/:select/',ceratAccController.createaccount_createaccount_get);
