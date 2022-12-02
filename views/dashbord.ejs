@@ -23,6 +23,7 @@
                 <li class="page-item"><a class="page-link bg-dark" href="#users">users</a></li>
                 <li class="page-item"><a class="page-link bg-dark" href="#question">question</a></li>
                 <li class="page-item"><a class="page-link bg-dark" href="#addVideo">add Video</a></li>
+                <li class="page-item"><a class="page-link bg-dark" href="/addQuiz/">add Quiz</a></li>
               </ul>
             </nav>
           </div>
@@ -219,7 +220,7 @@
             <div class="container">
               <h1 id="addVideo">add video</h1>
               <form action="/addVideo/" method="post" class="w-50">
-                
+
                 <div class="form-group">
                   <label for="Vlink" class="text-secondary ">video link</label>
                   <input type="text" class="form-control" name="videoLink" id="Vlink" required>
@@ -231,8 +232,7 @@
                 </div>
 
                 <div class=" mt-1">
-                  <select class="custom-select" name="academicYear"
-                    aria-label="Default select example">
+                  <select class="custom-select" name="academicYear" aria-label="Default select example">
                     <option selected value="0">academic year</option>
                     <option name="fs" value="first secondary">first secondary</option>
                     <option name="ss" value="Second secondary">Second secondary</option>
@@ -242,12 +242,17 @@
                   <div class="invalid-feedback">chose academic year</div>
 
                 </div>
-                
+
                 <input type="submit" class="btn btn-primary mt-3" value="Add Video">
 
               </form>
             </div>
           </div>
+
+
+
+
+          
 
 
 

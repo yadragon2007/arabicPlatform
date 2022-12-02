@@ -55,17 +55,25 @@
                     
                     <!-- </div> -->
                     <ul class="dropdown-menu" style="width: 200px;">
+                      <a href="/" class="dropdown-item">
+                        home
+                      </a>
+                      <!-- <a href="/learnning/" class="dropdown-item">
+                        learn
+                      </a>
+                      <a href="" class="dropdown-item">
+                        quiz
+                      </a> -->
+
+                      <hr class="dropdown-divider">
+
                       <a href="" class="dropdown-item disabled">
-                        <!-- <i class="bi bi-sliders"></i> -->
                         eidt profile
                       </a>
-                      <a href="" class="dropdown-item disabled">
-                        <!-- <i class="bi bi-gear-fill"></i> -->
+                      <a href="" class="dropdown-item disabled">                        
                         setting
                       </a>
-                      <hr class="dropdown-divider">
                       <a href="/logout" class="dropdown-item">
-                        <!-- <i class="bi bi-door-closed-fill"></i> -->
                         log out
                       </a>
                     </ul>
@@ -110,7 +118,7 @@
                                 <%= QuSchemaData[i].reply %>
                               </p>
                               <form action="/delete/question/<%= QuSchemaData[i].id %>/" method="get">
-                                <input type="submit" class="btn btn-primary mt-3" value="delete">
+                                <input type="submit" class="btn btn-danger mt-3" value="delete">
                               </form>
                             </div>
 

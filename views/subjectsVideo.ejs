@@ -35,9 +35,9 @@
                       <p class="card-text text-center"><%= lessons[i].description %></p>
     
                       <div class="d-flex justify-content-center justify-content-md-start">
-                        <a href="<%= lessons[i].videoLink %>" class="btn btn-primary m-1" style="width: 100px;">watch</a>
+                        <a href="<%= lessons[i].videoLink %>" class="btn btn-primary m-1" style="width: 100px;" target="_blank">watch</a>
                         <% if (lessons[i].filesLink != '') { %>
-                          <a href="<%= lessons[i].filesLink %>" class="btn btn-link m-1">download files</a>         
+                          <a href="<%= lessons[i].filesLink %>" class="btn btn-link m-1" target="_blank">download files</a>         
                         <% } %>
                         <% if (userData.admin == '1') { %>
                           <a href="/delete/lesson/<%= lessons[i].id %>/" class="btn btn-danger m-1 ">delete lesson</a>         

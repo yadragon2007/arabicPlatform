@@ -62,7 +62,7 @@
                       <% if (userData.admin=='1' ) { %>
                         <form action="/dashboard/" method="get">
                           <a href="/logout" class="btn btn-primary">log out</a>
-                            <input type="submit" class="btn btn-primary" value="dash board">
+                          <input type="submit" class="btn btn-primary" value="dash board">
                         </form>
 
                         <% } else if (userData.academicYear !='0' ) { %>
@@ -189,10 +189,10 @@
                             <%- include('./partials/footer.ejs') %>
 
 
+                              <% } %>
+                                <%- include('./partials/js.ejs') %>
 
-                              <%- include('./partials/js.ejs') %>
 
-                                <% } %>
 
   </body>
 

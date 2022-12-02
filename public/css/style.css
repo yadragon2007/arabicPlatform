@@ -96,6 +96,9 @@ footer div ul a:hover {
     border-left: 1px solid #6c757d;
     height: 100vh;
 }
+input{
+  outline: none;
+}
 @media screen and (min-width:0) and (max-width:768px) {
     header{
         height: 200px;

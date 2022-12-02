@@ -16,6 +16,7 @@ const dashboard_dashboard_get = (req, res) => {
               userData: req.cookies.userData,
               AccountsData: AccountsResult,
               QuSchemaData: QuSchemaResult,
+              QuizData:req.cookies.Quiz,
               alert: 0,
             });
           })
