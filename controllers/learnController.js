@@ -87,8 +87,57 @@ const addQuiz_addQuiz_post = (req, res) => {
       }
     });
   } else if (req.body.system == "addQuestion") {
+    Quiz.findOne({ title: req.cookies.Quiz.title }, (err, result) => {
+      let question = {
+        text: req.body.text,
+        question: req.body.question,
+        answer: req.body.answer,
+        false1: req.body.false1,
+        false2: req.body.false2,
+        false3: req.body.false3,
+      };
+      result.questions.push(question);
+
+      Quiz.findByIdAndUpdate(result.id, { questions: result.questions }).then(
+        () => {
+          Quiz.findById(result.id, (err, result) => {
+            res.cookie("Quiz", result, {
+              secure: true,
+              maxAge: 2592000000,
+            });
+            res.redirect("/addQuiz/");
+          });
+        }
+      );
+    });
   } else if (req.body.system == "online") {
+    Quiz.findOneAndUpdate(
+      { title: req.cookies.Quiz.title },
+      { online: 1 },
+      (err, result) => {
+        Quiz.findById(result.id, (err, result) => {
+          res.cookie("Quiz", result, {
+            secure: true,
+            maxAge: 2592000000,
+          });
+          res.redirect("/addQuiz/");
+        });
+      }
+    );
   } else if (req.body.system == "offline") {
+    Quiz.findOneAndUpdate(
+      { title: req.cookies.Quiz.title },
+      { online: 0 },
+      (err, result) => {
+        Quiz.findById(result.id, (err, result) => {
+          res.cookie("Quiz", result, {
+            secure: true,
+            maxAge: 2592000000,
+          });
+          res.redirect("/addQuiz/");
+        });
+      }
+    );
   } else if (req.body.system == "cansel") {
     res.clearCookie("Quiz");
     res.redirect("/addQuiz/");
@@ -119,9 +168,29 @@ const addQuiz_addQuiz_post = (req, res) => {
   }
 };
 
+const deleteQuestion_addQuiz_get = (req, res) => {
+  Quiz.findById(req.params.id, (err, result) => {
+    let questions = result.questions;
+    questions.splice(req.params.index, 1);
+    Quiz.findByIdAndUpdate(
+      req.params.id,
+      { questions: questions },
+      (err, result) => {
+        Quiz.findById(result.id, (err, result) => {
+          res.cookie("Quiz", result, {
+            secure: true,
+            maxAge: 2592000000,
+          });
+          res.redirect("/addQuiz/");
+        });
+      }
+    );
+  });
+};
 module.exports = {
   learn_subjectsVideo_get,
   deleteLesson_subjectsVideo_get,
   addQuiz_addQuiz_get,
   addQuiz_addQuiz_post,
+  deleteQuestion_addQuiz_get,
 };

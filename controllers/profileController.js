@@ -7,6 +7,7 @@ const profile_peofile_get = (req, res) => {
       res.render("profile", {
         title: "profile",
         userData: req.cookies.userData,
+        quizGrades:req.cookies.userData.quiz,
         QuSchemaData: QuSchemaResult,
         alert: 0,
       });

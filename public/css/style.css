@@ -3,7 +3,9 @@
     padding: 0;
     letter-spacing: 1px;
 }
-
+:root{
+  --gray:rgb(165, 161, 161);
+}
 header {
     height: 150px;
     width: 100%;
@@ -148,4 +150,26 @@ input{
         width: 100%;
     }
    
+}
+
+
+.questionDashBoard{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+}
+.questionDashBoard .text{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.questionDashBoard .question,.answer div{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* color: var(--gray); */
+}
+.questionDashBoard .question div{
+  max-width: 35px;
 }

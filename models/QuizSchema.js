@@ -5,6 +5,7 @@ const quizSchema = new Schema({
   title:String,
   academicYear:String,
   questions:Array,
+  studentsGrades:Array,
   // [{
   //   Qu:String,
   //   choices:[String,String,String,String]

@@ -18,7 +18,7 @@
     "watch": "nodemon --ext js,ejs --ignore public"
   },
   "name": "yadragon",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "the best chatting web in the worled",
   "main": "app.js",
   "keywords": [
@@ -29,5 +29,6 @@
   "license": "ISC",
   "engines": {
     "node": "16.15.1"
-  }
+  },
+  "devDependencies": {}
 }

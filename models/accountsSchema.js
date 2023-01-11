@@ -11,6 +11,8 @@ const accountsSchema = new Schema({
   admin: String,
   ban: String,
   IP:String,
+  exams:Array,
+  quiz:Array,
 });
 
 const Accounts = mongoose.model("Accounts", accountsSchema);

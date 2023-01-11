@@ -61,12 +61,38 @@
                     <div class="row justify-content-center justify-content-md-start">
                       <% if (userData.admin=='1' ) { %>
                         <form action="/dashboard/" method="get">
-                          <a href="/logout" class="btn btn-primary">log out</a>
+                          <a href="/logout" class="btn btn-primary ">log out</a>
                           <input type="submit" class="btn btn-primary" value="dash board">
                         </form>
 
                         <% } else if (userData.academicYear !='0' ) { %>
-                          <a class="btn btn-primary" href="/profile/">profile</a>
+
+                          <a class="btn btn-primary position-relative" href="/profile/">
+                            profile
+                            <% let c=0%>
+                              <% for( let i=0; i < QuSchemaData.length; i++ ) { %>
+                                <% if (QuSchemaData[i].AccData.userName==userData.userName) { %>
+                                  <% if (QuSchemaData[i].answered=='1' ) { %>
+                                    <% c=c+1 %>
+                                      <% } %>
+                                        <% if (i+1==QuSchemaData.length && c !=0) { %>
+                                          <% if (c>= 9) { %>
+                                            <span
+                                              class="position-absolute top-0 bottom-1 start-100 translate-middle badge  border border-dark bg-danger"
+                                              style="border-radius: 20px;">
+                                              9+
+                                            </span>
+                                            <% }else{%>
+                                              <span
+                                              class="position-absolute top-0 bottom-1 start-100 translate-middle badge  border border-dark bg-danger"
+                                              style="border-radius: 20px;">
+                                              <%= c %> 
+                                            </span>
+                                              <% } %>
+                                                <% } %>
+                                                  <% } %>
+                                                    <% } %>
+                          </a>
                           <% } %>
                     </div>
                   </div>
@@ -97,7 +123,7 @@
 
                               <h5 class="card-title">أختبر نفسك</h5>
                               <p class="text-right">قيم نفسك و أعرف مستواك</p>
-                              <a href="chooseQuiz.html" class="btn btn-primary">إبدأ الإمتحان</a>
+                              <a href="/quiz/choose/" class="btn btn-primary">إبدأ الإمتحان</a>
                             </div>
                           </div>
                         </div>

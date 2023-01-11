@@ -50,9 +50,9 @@
                     <!-- <div class="btn-group"> -->
                     <!-- <div class="btn btn-primary" style="width: auto;"></div> -->
 
-                      <div class="btn btn-primary dropdown-toggle" id="info" data-toggle="dropdown">options</div>
+                    <div class="btn btn-primary dropdown-toggle" id="info" data-toggle="dropdown">options</div>
 
-                    
+
                     <!-- </div> -->
                     <ul class="dropdown-menu" style="width: 200px;">
                       <a href="/" class="dropdown-item">
@@ -70,7 +70,7 @@
                       <a href="" class="dropdown-item disabled">
                         eidt profile
                       </a>
-                      <a href="" class="dropdown-item disabled">                        
+                      <a href="" class="dropdown-item disabled">
                         setting
                       </a>
                       <a href="/logout" class="dropdown-item">
@@ -92,43 +92,61 @@
                     <div class="card card-body bg-dark">
 
                       <h2>Student evaluation:</h2>
+                      <% let g=0; %>
+                        <% let mg=0; %>
+                          <% for( let i=0; i < quizGrades.length; i++ ) { %>
+                            <% g=g+ quizGrades[i].grade %>
+                              <% mg=mg+ quizGrades[i].maxGrade %>
 
-                      <div class="progress w-75">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25">
-                          25%
-                        </div>
-                      </div>
-                      <br>
-                      <h2>exam grades:</h2>
-                      <p>exam 1: 50/34</p>
-                      <p>exam 2: 50/40</p>
-                      <p>exam 3: 50/45</p>
-                      <p>exam 4: 50/50</p>
-                      <br>
+                                <% if (quizGrades.length==i+1) { %>
+                                  <% let d=(g/mg)*100 %>
 
-                      <h2 class="">smg:</h2>
-                      <% for( let i=0; i < QuSchemaData.length; i++ ) { %>
-                        <% if (QuSchemaData[i].AccData.userName==userData.userName) { %>
-                          <% if (QuSchemaData[i].answered=='1' ) { %>
-                            <div class="card card-body bg-dark mb-4">
-                              <p>the answer of this question: <i class="text-secondary">
-                                  <%= QuSchemaData[i].question %>
-                                </i></p>
-                              <p>
-                                <%= QuSchemaData[i].reply %>
-                              </p>
-                              <form action="/delete/question/<%= QuSchemaData[i].id %>/" method="get">
-                                <input type="submit" class="btn btn-danger mt-3" value="delete">
-                              </form>
-                            </div>
+                                    <div class="progress w-75">
+                                      <div class="progress-bar" role="progressbar" style="width: <%= d %>%;"
+                                        aria-valuenow="25">
+                                        <%= d %>
+                                      </div>
+                                    </div>
+                                    <% } %>
+                                      <% } %>
 
-                            <% } %>
+                                        <br>
+                                        <h2>exam grades:</h2>
+                                        <% for (let i=0; i < quizGrades.length; i++) {%>
+                                          <p style="text-align:start  ;">
+                                            <%= quizGrades[i].title %> : <%= quizGrades[i].grade%>/<%=
+                                                  quizGrades[i].maxGrade %>
+                                          </p>
+                                          <% } %>
+                                            <br>
 
-                              <% } %>
-                                <% } %>
+                                            <h2 class="">smg:</h2>
+                                            <div class="d-flex flex-column-reverse">
+                                              <% for( let i=0; i < QuSchemaData.length; i++ ) { %>
+                                                <% if (QuSchemaData[i].AccData.userName==userData.userName) { %>
+                                                  <% if (QuSchemaData[i].answered=='1' ) { %>
+                                                    <div class="card card-body bg-dark mb-4">
+                                                      <p>the answer of this question: <i class="text-secondary">
+                                                          <%= QuSchemaData[i].question %>
+                                                        </i></p>
+                                                      <p>
+                                                        <%= QuSchemaData[i].reply %>
+                                                      </p>
+                                                      <form action="/delete/question/<%= QuSchemaData[i].id %>/"
+                                                        method="get">
+                                                        <input type="submit" class="btn btn-danger mt-3" value="delete">
+                                                      </form>
+                                                    </div>
+
+                                                    <% } %>
+
+                                                      <% } %>
+                                                        <% } %>
+                                            </div>
 
 
-                                  <a href="/learnning/" class="btn btn-primary mt-5">continue learning</a>
+
+                                            <a href="/learnning/" class="btn btn-primary mt-5">continue learning</a>
                     </div>
 
                   </div>
