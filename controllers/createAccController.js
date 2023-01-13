@@ -29,8 +29,8 @@ const createaccount_post = (req, res) => {
   Accounts.findOne({ userName: req.body.userName })
     .then((result) => {
       if (
-        req.body.userName == "fluentArabic" &&
-        newAccount.academicYear != "0"
+        req.body.userName != "fluentArabic" &&
+        req.body.academicYear != "0"
       ) {
         if (result == null) {
           bcrypt
