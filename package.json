@@ -18,17 +18,30 @@
     "watch": "nodemon --ext js,ejs --ignore public"
   },
   "name": "yadragon",
-  "version": "1.0.1",
-  "description": "the best chatting web in the worled",
+  "version": "1.0.0",
+  "description": "learning academy",
   "main": "app.js",
   "keywords": [
-    "chat",
-    "social"
+    "Arabic",
+    "arabic",
+    "Amr",
+    "Amr gamale",
+    "بالعربي الفصيح",
+    "عربي",
+    "لغة عربية"
   ],
   "author": "Yousef Amr",
   "license": "ISC",
   "engines": {
     "node": "16.15.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yadragon2007/In-Eloquent-Arabic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yadragon2007/In-Eloquent-Arabic/issues"
+  },
+  "homepage": "https://github.com/yadragon2007/In-Eloquent-Arabic#readme"
 }

@@ -6,6 +6,7 @@ const accountsSchema = new Schema({
   firstName: String,
   lastName: String,
   userName: String,
+  email: String,
   password: String,
   academicYear: String,
   admin: String,
